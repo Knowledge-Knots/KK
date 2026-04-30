@@ -1,13 +1,40 @@
 import { Link } from 'react-router-dom';
 import { getProgress } from '@/lib/progress';
-import { LESSONS } from '@/lib/curriculum';
 import KKCharacter from '@/components/kk/KKCharacter';
 
-const subjectButtons = [
-  { id: 'ela', label: 'ELA', color: '#F5A623', path: '/subject/ela' },
-  { id: 'math', label: 'Math', color: '#3CB371', path: '/subject/math' },
-  { id: 'science', label: 'Science', color: '#64B5F6', path: '/subject/science' },
-  { id: 'history', label: 'History', color: '#F06292', path: '/subject/history' },
+const subjects = [
+  {
+    id: 'ela',
+    label: 'English',
+    sub: 'Reading & Writing',
+    color: '#F5A623',
+    icon: '📖',
+    path: '/subject/ela',
+  },
+  {
+    id: 'math',
+    label: 'Math',
+    sub: 'Numbers & Logic',
+    color: '#3CB371',
+    icon: '➗',
+    path: '/subject/math',
+  },
+  {
+    id: 'science',
+    label: 'Science',
+    sub: 'Explore the World',
+    color: '#64B5F6',
+    icon: '🔬',
+    path: '/subject/science',
+  },
+  {
+    id: 'history',
+    label: 'History',
+    sub: 'Stories of People',
+    color: '#F06292',
+    icon: '🌍',
+    path: '/subject/history',
+  },
 ];
 
 export default function Home() {
@@ -17,165 +44,215 @@ export default function Home() {
   return (
     <div className="min-h-screen font-nunito" style={{ backgroundColor: '#F5EFE0' }}>
 
-      {/* ── HERO ── navy bg, yellow title, characters cluster top-right */}
-      <header style={{ backgroundColor: '#2D4A7A' }} className="relative overflow-hidden">
-        <div className="max-w-lg mx-auto px-6 pt-10 pb-8 flex items-start justify-between gap-4">
-          {/* Left: title + subtitle + points pill */}
-          <div className="z-10 flex-1">
-            <h1 className="font-fredoka leading-tight mb-3" style={{ fontSize: '2.8rem', color: '#F5A623' }}>
-              Knowledge<br />Knots
-            </h1>
-            <p className="font-nunito font-bold text-white/90 text-base leading-snug max-w-[220px]">
-              Hands-on lessons to make learning more engaging for students!
-            </p>
-            <Link to="/dashboard">
-              <div className="inline-flex items-center gap-2 mt-5 rounded-2xl px-4 py-2 transition-all cursor-pointer"
-                style={{ backgroundColor: 'rgba(255,255,255,0.18)' }}>
-                <span className="text-kk-yellow font-fredoka">⭐ {progress.totalPoints} pts</span>
-                <span className="text-white/50">|</span>
-                <span className="font-fredoka text-white">{progress.streakDays}🔥</span>
-              </div>
+      {/* ── TOP NAV ── */}
+      <nav className="bg-navy text-white">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <KKCharacter type="star" size={36} />
+            <span className="font-fredoka text-2xl text-kk-orange">Knowledge Knots</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/dashboard"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition font-nunito font-bold text-sm"
+            >
+              <span className="text-kk-yellow">⭐ {progress.totalPoints}</span>
+              <span className="text-white/40">|</span>
+              <span>{progress.streakDays}🔥</span>
+              <span className="text-white/70 ml-1">Dashboard</span>
             </Link>
           </div>
-          {/* Right: characters cluster (inline SVG) */}
-          <div className="flex-shrink-0 -mt-2 grid grid-cols-2 gap-1">
-            <KKCharacter type="star" size={70} animate />
-            <KKCharacter type="blob" color="#F06292" size={70} />
-            <KKCharacter type="square" color="#3CB371" size={70} />
-            <KKCharacter type="flower" size={70} />
+        </div>
+      </nav>
+
+      {/* ── HERO ── */}
+      <header className="bg-navy text-white relative overflow-hidden">
+        {/* soft decorative blobs */}
+        <div className="absolute -top-12 -right-16 w-72 h-72 rounded-full opacity-20" style={{ backgroundColor: '#F5A623' }} />
+        <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-10" style={{ backgroundColor: '#F06292' }} />
+
+        <div className="relative max-w-5xl mx-auto px-6 py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span className="inline-block bg-white/10 text-kk-yellow font-fredoka px-3 py-1 rounded-full text-sm mb-4">
+              ✨ Hands-on learning, K–12
+            </span>
+            <h1 className="font-fredoka leading-[1.05] mb-4 text-5xl md:text-6xl">
+              <span className="text-kk-orange">Tie new ideas</span><br />
+              <span className="text-white">into knowledge knots.</span>
+            </h1>
+            <p className="font-nunito text-white/80 text-base md:text-lg leading-relaxed mb-6 max-w-md">
+              Interactive lessons across English, Math, Science, and History — built around real-world problems your students actually want to solve.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/subject/ela"
+                className="inline-flex items-center gap-2 bg-kk-orange text-white font-fredoka text-lg px-6 py-3 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all"
+              >
+                Start Learning 🚀
+              </Link>
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-fredoka text-lg px-6 py-3 rounded-2xl transition-all"
+              >
+                My Progress
+              </Link>
+            </div>
+          </div>
+
+          {/* Hero mascot — big blob reading */}
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-kk-orange/20 blur-2xl" />
+            <KKCharacter type="blob" size={340} className="relative drop-shadow-2xl" animate />
+            <KKCharacter type="star" size={90} className="absolute -top-2 -right-2 md:right-8 animate-wiggle" />
+            <KKCharacter type="flower" size={70} className="absolute bottom-0 -left-2 md:left-8" />
           </div>
         </div>
       </header>
 
-      {/* ── LEARN ABOUT A SUBJECT ── cream bg, two col */}
-      <section style={{ backgroundColor: '#F5EFE0' }} className="py-10 px-6">
-        <div className="max-w-lg mx-auto grid grid-cols-2 gap-6 items-start">
-          {/* Left */}
-          <div>
-            <h2 className="font-fredoka text-gray-900 leading-tight mb-3" style={{ fontSize: '1.7rem' }}>
-              Learn about<br />a Subject
-            </h2>
-            <p className="font-nunito text-gray-600 text-sm leading-relaxed">
-              Select a subject, and you'll get to use hands-on lesson plans for each subject depending on your grade level.
+      {/* ── SUBJECT CARDS ── */}
+      <section className="py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="font-fredoka text-navy text-3xl md:text-4xl mb-2">Pick a subject</h2>
+            <p className="font-nunito text-gray-600 max-w-xl mx-auto">
+              Each subject has lessons for every grade from Kindergarten through 12th — start anywhere.
             </p>
-            {/* Characters below the text */}
-            <div className="mt-6 flex gap-3 items-end">
-              <KKCharacter type="square" color="#3CB371" size={70} />
-              <KKCharacter type="flower" size={70} />
-            </div>
           </div>
-          {/* Right: buttons */}
-          <div className="flex flex-col gap-3">
-            {subjectButtons.map(s => (
-              <Link key={s.id} to={s.path}>
-                <div
-                  className="w-full py-3 px-6 rounded-xl text-white font-fredoka text-lg text-center shadow-sm hover:scale-105 active:scale-95 transition-all"
-                  style={{ backgroundColor: s.color }}
-                >
-                  {s.label}
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+            {subjects.map((s) => (
+              <Link
+                key={s.id}
+                to={s.path}
+                className="group relative rounded-3xl p-5 md:p-6 text-white overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
+                style={{ backgroundColor: s.color }}
+              >
+                <div className="text-4xl md:text-5xl mb-3">{s.icon}</div>
+                <h3 className="font-fredoka text-xl md:text-2xl leading-tight">{s.label}</h3>
+                <p className="font-nunito text-white/80 text-sm mt-1">{s.sub}</p>
+                <div className="mt-4 inline-flex items-center gap-1 text-sm font-fredoka opacity-90 group-hover:opacity-100">
+                  Explore <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
+                {/* decorative ring */}
+                <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-white/15" />
               </Link>
             ))}
-            <Link to="/dashboard">
-              <div className="w-full py-3 px-6 rounded-xl text-white font-fredoka text-lg text-center shadow-sm hover:scale-105 active:scale-95 transition-all"
-                style={{ backgroundColor: '#F06292' }}>
-                View All
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section className="bg-white py-16 px-6 border-y border-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-fredoka text-navy text-3xl md:text-4xl mb-2">How it works</h2>
+            <p className="font-nunito text-gray-600">Three steps. Real practice. Real progress.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="relative mx-auto mb-4 w-44 h-44 rounded-3xl flex items-center justify-center" style={{ backgroundColor: '#F5A62318' }}>
+                <KKCharacter type="square" size={150} />
+                <div className="absolute -top-2 -left-2 w-9 h-9 rounded-full bg-kk-orange text-white font-fredoka flex items-center justify-center shadow-md">1</div>
               </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PINK CALLOUT BANNER ── */}
-      <section style={{ backgroundColor: '#F06292' }} className="px-6 py-8">
-        <div className="max-w-lg mx-auto flex items-center gap-4">
-          {/* Blue blob character on left */}
-          <div className="flex-shrink-0">
-            <KKCharacter type="blob" color="#64B5F6" size={90} />
-          </div>
-          {/* White card */}
-          <div className="bg-white rounded-2xl px-5 py-4 shadow flex-1">
-            <p className="font-nunito font-bold text-gray-800 text-sm leading-relaxed">
-              Encourage students to learn through Knowledge Knots! Hands-on interactive lessons that use real-world situations, allowing students to find and create solutions!
-            </p>
-            <p className="font-nunito italic text-gray-500 text-xs mt-2">"for students, by students."</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── START YOUR FIRST LESSON ── cream bg, two col */}
-      <section style={{ backgroundColor: '#F5EFE0' }} className="px-6 py-10">
-        <div className="max-w-lg mx-auto grid grid-cols-2 gap-6 items-start">
-          {/* Left */}
-          <div>
-            <h2 className="font-fredoka text-gray-900 leading-tight mb-3" style={{ fontSize: '1.7rem' }}>
-              Start your first<br />lesson today!
-            </h2>
-            <p className="font-nunito text-gray-600 text-sm mb-3">
-              Most students learn better with hands-on activities
-            </p>
-            <p className="font-nunito text-gray-600 text-sm mb-2">
-              At Knowledge Knots, our priority is your learning and growth.
-            </p>
-            <ul className="font-nunito text-gray-700 text-sm space-y-1 list-disc list-inside">
-              <li>Hands-on Lessons</li>
-              <li>Real Life Situations</li>
-            </ul>
-            <Link to="/subject/ela">
-              <button className="mt-5 bg-kk-orange text-white font-fredoka text-base px-6 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-sm">
-                Start Learning! 🚀
-              </button>
-            </Link>
-            {/* Blob at bottom */}
-            <div className="mt-8">
-              <KKCharacter type="blob" color="#64B5F6" size={100} />
-            </div>
-          </div>
-          {/* Right: reminder card */}
-          <div className="flex flex-col items-center gap-4 mt-4">
-            {/* Flower character */}
-            <div className="rounded-full flex items-center justify-center" style={{ backgroundColor: '#3CB371', width: 160, height: 160 }}>
-              <KKCharacter type="flower" size={130} />
-            </div>
-            <div className="bg-white rounded-2xl p-4 shadow-sm text-center w-full">
-              <p className="font-fredoka text-gray-800 text-lg mb-1">Reminder</p>
-              <p className="font-nunito text-gray-600 text-xs leading-relaxed">
-                If you're ever stuck don't be afraid to ask for help. Learning is all about trial and error
+              <h3 className="font-fredoka text-navy text-xl mb-2">Choose your subject</h3>
+              <p className="font-nunito text-gray-600 text-sm leading-relaxed">
+                Pick from English, Math, Science, or History — then choose your grade level.
               </p>
             </div>
-            {/* Triangle character */}
-            <KKCharacter type="triangle" size={90} />
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="relative mx-auto mb-4 w-44 h-44 rounded-3xl flex items-center justify-center" style={{ backgroundColor: '#3CB37118' }}>
+                <KKCharacter type="flower" size={140} animate />
+                <div className="absolute -top-2 -left-2 w-9 h-9 rounded-full bg-kk-green text-white font-fredoka flex items-center justify-center shadow-md">2</div>
+              </div>
+              <h3 className="font-fredoka text-navy text-xl mb-2">Try a hands-on lesson</h3>
+              <p className="font-nunito text-gray-600 text-sm leading-relaxed">
+                Drag, sort, highlight, sequence — every lesson is interactive, not just reading.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="relative mx-auto mb-4 w-44 h-44 rounded-3xl flex items-center justify-center" style={{ backgroundColor: '#64B5F618' }}>
+                <KKCharacter type="star" size={140} animate />
+                <div className="absolute -top-2 -left-2 w-9 h-9 rounded-full bg-kk-lightblue text-white font-fredoka flex items-center justify-center shadow-md">3</div>
+              </div>
+              <h3 className="font-fredoka text-navy text-xl mb-2">Earn stars & build streaks</h3>
+              <p className="font-nunito text-gray-600 text-sm leading-relaxed">
+                Track your points, daily streaks, and stars on a personal dashboard.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Progress summary if any */}
+      {/* ── PINK CALLOUT ── */}
+      <section className="bg-kk-pink px-6 py-14">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-[auto_1fr] gap-8 items-center">
+          <div className="flex justify-center">
+            <KKCharacter type="blob" size={200} animate />
+          </div>
+          <div className="bg-white rounded-3xl px-7 py-7 shadow-xl">
+            <p className="font-fredoka text-navy text-2xl mb-3">For students, by students.</p>
+            <p className="font-nunito text-gray-700 leading-relaxed">
+              Knowledge Knots was built around real-world situations so kids can find and create their own solutions. No filler, no endless videos — just hands-on activities you can finish in under ten minutes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROGRESS SUMMARY (only when there's progress) ── */}
       {completedCount > 0 && (
-        <section style={{ backgroundColor: '#F5EFE0' }} className="px-6 pb-10">
-          <div className="max-w-lg mx-auto bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
-            <h2 className="font-fredoka text-xl text-gray-800 mb-4">Your Progress 📊</h2>
+        <section className="px-6 py-14">
+          <div className="max-w-5xl mx-auto bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
+            <div className="flex items-center gap-4 mb-5">
+              <KKCharacter type="star" size={56} />
+              <div>
+                <h2 className="font-fredoka text-2xl text-navy">Your progress so far</h2>
+                <p className="font-nunito text-gray-500 text-sm">Keep it up — every lesson counts!</p>
+              </div>
+            </div>
             <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <p className="font-fredoka text-3xl text-kk-orange">{completedCount}</p>
-                <p className="font-nunito text-gray-500 text-xs">Lessons Done</p>
+              <div className="bg-kk-orange/10 rounded-2xl py-4">
+                <p className="font-fredoka text-3xl md:text-4xl text-kk-orange">{completedCount}</p>
+                <p className="font-nunito text-gray-600 text-xs md:text-sm mt-1">Lessons Done</p>
               </div>
-              <div>
-                <p className="font-fredoka text-3xl text-navy">{progress.totalPoints}</p>
-                <p className="font-nunito text-gray-500 text-xs">Total Points</p>
+              <div className="bg-navy/10 rounded-2xl py-4">
+                <p className="font-fredoka text-3xl md:text-4xl text-navy">{progress.totalPoints}</p>
+                <p className="font-nunito text-gray-600 text-xs md:text-sm mt-1">Total Points</p>
               </div>
-              <div>
-                <p className="font-fredoka text-3xl text-kk-green">{progress.stars}⭐</p>
-                <p className="font-nunito text-gray-500 text-xs">Stars Earned</p>
+              <div className="bg-kk-green/10 rounded-2xl py-4">
+                <p className="font-fredoka text-3xl md:text-4xl text-kk-green">{progress.stars}⭐</p>
+                <p className="font-nunito text-gray-600 text-xs md:text-sm mt-1">Stars Earned</p>
               </div>
+            </div>
+            <div className="text-center mt-6">
+              <Link
+                to="/dashboard"
+                className="inline-block bg-navy text-white font-fredoka px-6 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all"
+              >
+                See full dashboard →
+              </Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* Footer */}
-      <footer style={{ backgroundColor: '#2D4A7A' }} className="text-white py-6 px-5 text-center">
-        <p className="font-fredoka text-xl text-kk-orange mb-1">Knowledge Knots</p>
-        <p className="font-nunito text-white/60 text-sm">Hands-on learning for curious minds 🌟</p>
+      {/* ── FOOTER ── */}
+      <footer className="bg-navy text-white py-10 px-6">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <KKCharacter type="flower" size={48} />
+            <div>
+              <p className="font-fredoka text-xl text-kk-orange">Knowledge Knots</p>
+              <p className="font-nunito text-white/60 text-sm">Hands-on learning for curious minds 🌟</p>
+            </div>
+          </div>
+          <p className="font-nunito text-white/50 text-xs">© Knowledge Knots — for students, by students.</p>
+        </div>
       </footer>
     </div>
   );
