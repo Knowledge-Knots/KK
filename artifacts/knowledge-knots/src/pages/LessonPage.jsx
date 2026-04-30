@@ -62,8 +62,8 @@ export default function LessonPage() {
       <div className="min-h-screen bg-cream flex items-center justify-center px-5">
         <div className="max-w-md w-full text-center space-y-6">
           <div className="flex justify-center gap-3">
-            <KKCharacter type="star" size={80} animate />
-            <KKCharacter type="flower" size={80} animate />
+            <KKCharacter type="star" size={80} />
+            <KKCharacter type="flower" size={80} />
           </div>
           <div className="bg-white rounded-3xl p-8 shadow-lg">
             <h2 className="font-fredoka text-4xl text-navy mb-2">Lesson Complete! 🎉</h2>
@@ -141,7 +141,7 @@ export default function LessonPage() {
 
         {/* KK character decoration */}
         <div className="flex justify-end mt-6 opacity-50">
-          <KKCharacter type="blob" color={subject.color} size={40} animate />
+          <KKCharacter type="blob" color={subject.color} size={40} />
         </div>
       </main>
     </div>

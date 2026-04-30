@@ -27,7 +27,7 @@ export default function Dashboard() {
             <p className="text-white/70 font-nunito text-sm">Track your learning journey!</p>
           </div>
           <div className="hidden md:block">
-            <KKCharacter type="star" size={70} animate />
+            <KKCharacter type="star" size={70} />
           </div>
         </div>
       </header>
@@ -125,7 +125,7 @@ export default function Dashboard() {
 
         {totalCompleted === 0 && (
           <div className="bg-white rounded-2xl p-10 text-center shadow-sm border border-gray-100">
-            <KKCharacter type="blob" color="#64B5F6" size={80} animate className="mx-auto mb-4" />
+            <KKCharacter type="blob" color="#64B5F6" size={80} className="mx-auto mb-4" />
             <h3 className="font-fredoka text-2xl text-gray-700 mb-2">No lessons completed yet!</h3>
             <p className="font-nunito text-gray-500 mb-5">Start your first lesson to earn points and stars!</p>
             <Link to="/subject/ela">
@@ -139,7 +139,7 @@ export default function Dashboard() {
         {/* Characters decoration */}
         <div className="flex justify-center gap-6 pt-4 pb-8">
           {['blob', 'square', 'flower', 'triangle'].map((t, i) => (
-            <KKCharacter key={t} type={t} color={['#64B5F6', '#F5A623', '#3CB371', '#F06292'][i]} size={45} animate />
+            <KKCharacter key={t} type={t} color={['#64B5F6', '#F5A623', '#3CB371', '#F06292'][i]} size={45} />
           ))}
         </div>
       </main>

@@ -85,7 +85,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                to="/subject/ela"
+                to="/dashboard"
                 className="inline-flex items-center gap-2 bg-kk-orange text-white font-fredoka text-lg px-6 py-3 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all"
               >
                 Start Learning 🚀
@@ -102,8 +102,8 @@ export default function Home() {
           {/* Hero mascot — big blob reading */}
           <div className="relative flex items-center justify-center">
             <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-kk-orange/20 blur-2xl" />
-            <KKCharacter type="blob" size={340} className="relative drop-shadow-2xl" animate />
-            <KKCharacter type="star" size={90} className="absolute -top-2 -right-2 md:right-8 animate-wiggle" />
+            <KKCharacter type="blob" size={340} className="relative drop-shadow-2xl" />
+            <KKCharacter type="star" size={90} className="absolute -top-2 -right-2 md:right-8" />
             <KKCharacter type="flower" size={70} className="absolute bottom-0 -left-2 md:left-8" />
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function Home() {
             {/* Step 2 */}
             <div className="text-center">
               <div className="relative mx-auto mb-4 w-44 h-44 rounded-3xl flex items-center justify-center" style={{ backgroundColor: '#3CB37118' }}>
-                <KKCharacter type="flower" size={140} animate />
+                <KKCharacter type="flower" size={140} />
                 <div className="absolute -top-2 -left-2 w-9 h-9 rounded-full bg-kk-green text-white font-fredoka flex items-center justify-center shadow-md">2</div>
               </div>
               <h3 className="font-fredoka text-navy text-xl mb-2">Try a hands-on lesson</h3>
@@ -177,7 +177,7 @@ export default function Home() {
             {/* Step 3 */}
             <div className="text-center">
               <div className="relative mx-auto mb-4 w-44 h-44 rounded-3xl flex items-center justify-center" style={{ backgroundColor: '#64B5F618' }}>
-                <KKCharacter type="star" size={140} animate />
+                <KKCharacter type="star" size={140} />
                 <div className="absolute -top-2 -left-2 w-9 h-9 rounded-full bg-kk-lightblue text-white font-fredoka flex items-center justify-center shadow-md">3</div>
               </div>
               <h3 className="font-fredoka text-navy text-xl mb-2">Earn stars & build streaks</h3>
@@ -193,7 +193,7 @@ export default function Home() {
       <section className="bg-kk-pink px-6 py-14">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[auto_1fr] gap-8 items-center">
           <div className="flex justify-center">
-            <KKCharacter type="blob" size={200} animate />
+            <KKCharacter type="blob" size={200} />
           </div>
           <div className="bg-white rounded-3xl px-7 py-7 shadow-xl">
             <p className="font-fredoka text-navy text-2xl mb-3">For students, by students.</p>
