@@ -25,3 +25,13 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+- `artifacts/api-server` — Express 5 API server (template; no Knowledge Knots routes use it)
+- `artifacts/mockup-sandbox` — Vite component preview server for canvas
+- `artifacts/knowledge-knots` — **Knowledge Knots**, a kids' educational web app (React + Vite + Tailwind v4 + react-router-dom). Imported from a Base44 export. Self-contained: progress is persisted in `localStorage`, no backend required. Lives at `/`.
+  - Subjects: ELA, Math, Science, Social Studies & History (~564 lessons across grades K–12)
+  - Activities: drag-sort, drag-label, sequence, matching, click-identify, highlight, journal
+  - Brand colors and Fredoka One / Nunito fonts wired up via custom utilities in `src/index.css`
+  - Inline SVG `KKCharacter` components replace the broken external character image URLs from the original export
