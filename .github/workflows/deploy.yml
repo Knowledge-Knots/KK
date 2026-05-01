@@ -7,26 +7,16 @@ permissions:
   pages: write
   id-token: write
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: 24
-      - name: Install and Build
-        run: |
-          cd artifacts/knowledge-knots
-          npm install
-          npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          # This points to where the finished app is created
-          path: './artifacts/knowledge-knots/dist' 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/deploy-pages@v4
+          # This tells GitHub to just grab the folder you showed me in the image
+          path: './artifacts/knowledge-knots'
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
