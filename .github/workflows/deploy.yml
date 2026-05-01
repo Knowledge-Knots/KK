@@ -9,17 +9,22 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
+          node-version: 24
+      - name: Install and Build
+        run: |
+          cd artifacts/knowledge-knots
+          npm install
+          npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          # This points to where the finished app is created
+          path: './artifacts/knowledge-knots/dist' 
   deploy:
     needs: build
     runs-on: ubuntu-latest
